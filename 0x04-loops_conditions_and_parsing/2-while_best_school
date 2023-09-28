@@ -2,7 +2,7 @@
 # This script is displaying "Best School" 10 times
 list="Best School"
 i=0
-while [i -lt 10]; do
+while [ $i -lt 10 ]; do
     echo $list
     ((i++))
 done
