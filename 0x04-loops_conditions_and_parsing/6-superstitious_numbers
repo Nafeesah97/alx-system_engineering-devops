@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# This script is displaying "Best School", "good luck" and "bad luck"
+# This script is displaying 1 to 20
 i=1
 while [ $i -lt 21 ]; do
     case $i in
