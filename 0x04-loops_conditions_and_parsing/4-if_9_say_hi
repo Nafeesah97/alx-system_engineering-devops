@@ -4,8 +4,8 @@ list="Best School"
 i=0
 while [ $i -lt 10 ]; do
     echo $list
-    ((i++))
-    if (($i -eq 8)); then
-    echo "Hi"
+    if [ $i -eq 8 ]; then
+    	echo "Hi"
     fi
+    ((i++))
 done
