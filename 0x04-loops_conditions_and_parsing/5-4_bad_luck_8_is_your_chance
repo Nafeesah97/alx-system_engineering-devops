@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+# This script is displaying "Best School", "good luck" and "bad luck"
+list="Best School"
+i=0
+while [ $i -lt 10 ]; do
+    if [ $i -eq 3 ]; then
+    	echo "bad luck"
+    elif [ $i -eq 7 ]; then
+        echo "good luck"
+    else
+        echo $list
+    fi
+    ((i++))
+done
