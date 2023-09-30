@@ -3,7 +3,7 @@
 list="Best School"
 i=0
 while [ $i -lt 10 ]; do
-    echo $list
+    echo "$list"
     if [ $i -eq 8 ]; then
     	echo "Hi"
     fi

@@ -8,7 +8,7 @@ while [ $i -lt 10 ]; do
     elif [ $i -eq 7 ]; then
         echo "good luck"
     else
-        echo $list
+        echo "$list"
     fi
     ((i++))
 done
