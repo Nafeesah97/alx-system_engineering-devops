@@ -2,15 +2,15 @@
 # Bash script gives you information about the school file.
 
 doc="school"
-if [ -e $doc ] then
+if [ -e "$doc" ]; then
 	echo "school file exists"
-	if [ -s $doc ] then
+	if [ -s "$doc" ]; then
 		echo "school file is not empty"
-		if [ -f $doc ] then
-			echo "school is a regular file"
-		fi
 	else
 		echo "school file is empty"
+	fi
+	if [ -f "$doc" ]; then
+		echo "school is a regular file"
 	fi
 else
 	echo "school file does not exist"

@@ -1,15 +1,15 @@
 #!/usr/bin/env bash
 # Bash script displays numbers from 1 to 100
 
-for ((i=0; i<101; i++)); do
-    a=(($i%3))
-    b=(($i%5))
-    if [ $a -eq 0 ] then
-        echo "Fizz"
-    elif [ $b -eq 0] then
-        echo "Buzz"
-    elif [ $b -eq 0] && [ $a -eq 0 ] then
+for ((i=1; i<=100; i++)); do
+    a=$((i % 3))
+    b=$((i % 5))
+    if [ $a -eq 0 ] && [ $b -eq 0 ]; then
         echo "FizzBuzz"
+    elif [ $b -eq 0 ]; then
+        echo "Buzz"
+    elif [ $a -eq 0 ]; then
+        echo "Fizz"
     else
         echo "$i"
     fi
