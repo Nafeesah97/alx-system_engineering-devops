@@ -1,0 +1,1 @@
+- Aproject to understand a localhost,  0.0.0.0, /etc/hosts and how to display your machine’s active network interfaces
