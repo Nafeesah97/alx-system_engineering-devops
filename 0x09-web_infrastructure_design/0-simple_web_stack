@@ -1,0 +1,13 @@
+https://i.imgur.com/M7nSAdl.png
+
+A server is a hardware or software that the client interacts with which provide service to the client in the form of client-server model. In this case, when the user request for the webpage of www.foobar.com, the DNS resolver gets the IP address of the hostname which the browser(client) use to communicate with the IP address server (8.8.8.8 server). This server then provides necessary services according to the client requests. The server uses the HTTP (Hypertext Transfer Protocol) to communicate with the computer of the user requesting the website. 
+
+The role of a domain name is maoinly to assign human readable text to IPaddress that is usally inform of some set of digits if it is IPv4 or digits and letters if inform of IPv6. This makes it easy to remember a particular site name.
+
+www is a CNAME record for the domain name forbar.com
+
+The web server's role in this case is Nginx is to sent html pages and its related web component to the srver which in return sent it to the client. The service of this server is needed if the user requested for the static webpage of the forbar.com site.
+
+Therole of the application server is to provide the dynamic webpage of the site. This happens if the user is requesting for some real-time information. The application server gets its information from the application files or the database server , which in this case is MySql database. The database usually store some dynamic information which is use to give a real-time information to the user.
+
+There are lot of issues with this infrastructure. Firstly, the infrastructure is using a single server which might not have the capacity of handling high traffic on the site at the same time. Another issue with this design, that the server also serve as single point of failure(SPOF). If the server breaks down, then the whole website will be inaccessible. There could also be downtime if the application file is needed to be updated and static webpage most especially is needed.
