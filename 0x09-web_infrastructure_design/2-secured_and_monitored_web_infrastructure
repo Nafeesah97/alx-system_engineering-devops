@@ -1,0 +1,5 @@
+https://i.imgur.com/ngVvXr6.png
+
+This web infrastructure design has added security layers which are the firewlls and the the SSL certificate. These hlp to protect the client's information and also protect the server from unwanted attack or interruption from hackers. The monitoring clients are authorized service that helps to measure the servers performance. There are companies that one can acquire their service to provide this key performance information. This enables the website owner have a real-time monitoring of the servers.
+
+Having the SSL terminate at the load balancer is an issue because this can result in the transmisson not being encrypted but in plain-text thathackers can easily understand. Havinga single SQL that is ablw to write can lead to SPOF for write function. If that particular Datbase server happens to have a down time, the server may lose data. 
