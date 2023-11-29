@@ -1,13 +1,15 @@
 #!/usr/bin/env bash
-# To install Nginx on web server
-sudo apt update
-sudo apt-get -y install nginx
-new_loc="
-location / {
-	return 200 'Hello World!'
-}
-"
-nginx_config_file="/etc/nginx/sites-available/default"
+# Install nginx server and make / url return Hello World
 
-sudo sed -i -e "/location \/ {/,/}/c$new_loc" "$nginx_config_file"
-sudo nginx -s reload
+sudo apt -y update
+sudo apt -y upgrade
+sudo apt -y install nginx
+sudo service nginx start
+sudo chown -R "$USER":"$USER" /var/www/html
+sudo chmod -R 755 /var/www
+sudo echo "Hello World!" | tee /var/www/html/index.html
+
+new_string="server_name _;\n\n        location / {\n                try_files /index.html =404;\n        }"
+sudo sed -i "s#server_name _;#$new_string#" /etc/nginx/sites-enabled/default
+
+sudo service nginx reload
