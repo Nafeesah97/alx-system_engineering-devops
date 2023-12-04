@@ -5,24 +5,16 @@ sudo apt -y update
 sudo apt -y upgrade
 sudo apt -y install nginx
 sudo service nginx start
-sudo chown -R "$USER":"$USER" /var/www/html
-sudo chmod -R 755 /var/www
-sudo echo "Hello World!" | tee /var/www/html/index.html
-
 sudo chown -R "$USER":"$USER" /etc/nginx/sites-enabled
 sudo chmod -R 755 /etc/nginx/sites-enabled
 
 sudo echo "server {
-        listen 80 default_server;
-	listen [::]:80 default_server;
+        listen 80;
 
-	root /var/www/html;
-	index index.html index.htm index.nginx-debian.html;
+        server_name _;
 
-	server_name _;
-
-	location = /redirect_me {
-	        return 301 altayseer.tech;
+        location = /redirect_me {
+                return 301 altayseer.tech;
         }
 }" | tee /etc/nginx/sites-enabled/default
 
