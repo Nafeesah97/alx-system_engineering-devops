@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+<<<<<<< HEAD
 # redirect to another page
 
 # Update package list
@@ -34,4 +35,25 @@ echo "server {
 " | sudo tee /etc/nginx/sites-enabled/default
 
 # Restart nginx
+=======
+# Configure your Nginx server so that /redirect_me is redirecting to another page
+
+sudo apt -y update
+sudo apt -y upgrade
+sudo apt -y install nginx
+sudo service nginx start
+sudo chown -R "$USER":"$USER" /etc/nginx/sites-enabled
+sudo chmod -R 755 /etc/nginx/sites-enabled
+
+sudo echo "server {
+        listen 80;
+
+        server_name _;
+
+        location = /redirect_me {
+                return 301 altayseer.tech;
+        }
+}" | tee /etc/nginx/sites-enabled/default
+
+>>>>>>> f10951a1eac41e737b9c40cc8e29e9cfeafb3f79
 sudo service nginx restart
