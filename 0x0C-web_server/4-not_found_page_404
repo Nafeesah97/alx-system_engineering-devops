@@ -9,8 +9,13 @@ sudo apt-get -y install nginx
 
 # Start nginx service
 sudo service nginx start
+sudo chown -R "$USER":"$USER" /var/www/html
+sudo chmod -R 755 /var/www
+sudo echo 'Hello World!' | tee /var/www/html/index.html
+sudo echo -e "Ceci n'est pas une page\n" | tee /var/www/html/404.html
 
-echo "Ceci n'est pas une page\n" |sudo tee /var/www/html/404.html
+sudo chown -R "$USER":"$USER" /etc/nginx/sites-enabled
+sudo chmod -R 755 /etc/nginx/sites-enabled
 
 # Create Nginx configuration for redirection
 echo "server {
