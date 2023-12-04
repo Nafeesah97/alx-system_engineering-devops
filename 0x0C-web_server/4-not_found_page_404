@@ -10,7 +10,7 @@ sudo apt-get -y install nginx
 # Start nginx service
 sudo service nginx start
 
-sudo echo -e "Ceci n'est pas une page\n" | tee /var/www/html/404.html
+sudo echo "Ceci n'est pas une page" | tee /var/www/html/404.html
 
 # Create Nginx configuration for redirection
 echo "server {
