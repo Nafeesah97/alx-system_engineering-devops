@@ -13,7 +13,7 @@ sudo echo -e "Ceci n'est pas une page\n" | tee /var/www/html/404.html
 sudo chown -R "$USER":"$USER" /etc/nginx/sites-enabled
 sudo chmod -R 755 /etc/nginx/sites-enabled
 
-# shellcheck disable=SC2154
+hostname=$(hostname)
 sudo echo "
 server {
         listen 80 default_server;
@@ -24,7 +24,6 @@ server {
 
         server_name _;
 
-        add_header X-Served-By \$hostname;
 
         location /redirect_me {
                 return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;
@@ -32,6 +31,7 @@ server {
 
         location / {
                 try_files \$uri \$uri/ =404;
+		add_header X-Served-By \"$hostname\";
         }
 
         error_page 404 /404.html;
