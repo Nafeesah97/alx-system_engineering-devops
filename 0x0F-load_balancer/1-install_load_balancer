@@ -5,6 +5,9 @@ sudo apt -y update && sudo apt -y upgrade
 sudo apt install haproxy -y
 sudo service haproxy start
 
+sudo chown -R "$USER":"$USER" /etc/haproxy
+sudo chmod -R 755 /etc/haproxy
+
 sudo echo "global
         log /dev/log    local0
         log /dev/log    local1 notice
