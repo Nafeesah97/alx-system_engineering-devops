@@ -1,34 +1,43 @@
 #!/usr/bin/env bash
-# Update package list
-sudo apt-get update
+# Install nginx server and configure it to return custom response header
 
-# Install Nginx
-sudo apt-get install -y nginx
+sudo apt -y update
+sudo apt -y upgrade
+sudo apt -y install nginx
+sudo service nginx start
+sudo chown -R "$USER":"$USER" /var/www/html
+sudo chmod -R 755 /var/www
+sudo echo 'Hello World!' | tee /var/www/html/index.html
+sudo echo -e "Ceci n'est pas une page\n" | tee /var/www/html/404.html
 
-# Set the custom Nginx configuration
-cat <<EOF | sudo tee /etc/nginx/sites-available/default
+sudo chown -R "$USER":"$USER" /etc/nginx/sites-enabled
+sudo chmod -R 755 /etc/nginx/sites-enabled
+
+# shellcheck disable=SC2154
+sudo echo "
 server {
-    listen 80 default_server;
-    listen [::]:80 default_server;
+        listen 80 default_server;
+        listen [::]:80 default_server;
 
-    server_name _;
+        root /var/www/html;
+        index index.html index.htm index.nginx-debian.html;
 
-    root /var/www/html;
-    index index.html;
+        server_name _;
 
-    location / {
         add_header X-Served-By \$hostname;
-        try_files \$uri \$uri/ =404;
-    }
-}
-EOF
 
-# Create a symbolic link to enable the new configuration
-sudo ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled/
+        location /redirect_me {
+                return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;
+        }
 
-# Test Nginx configuration
-sudo nginx -t
+        location / {
+                try_files \$uri \$uri/ =404;
+        }
 
-# Restart Nginx to apply the changes
+        error_page 404 /404.html;
+        location = /404.html {
+                internal;
+        }
+}" | sudo tee /etc/nginx/sites-enabled/default
+
 sudo service nginx restart
-
