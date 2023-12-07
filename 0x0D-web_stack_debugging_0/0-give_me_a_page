@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+# To fix a web server to return a page that contains Hello Holberton
+sudo service apache2 restart
