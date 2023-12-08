@@ -1,3 +1,4 @@
 #!/usr/bin/env bash
 # debugging to make nginx listen on ort 80
 sudo sed -i 's/listen 80 default_server;/listen 80;/g' /etc/nginx/sites-available/default
+sudo service nginx restart
