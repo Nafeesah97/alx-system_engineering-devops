@@ -28,12 +28,12 @@ defaults
         timeout server  50000
 
 frontend myfrontend
-    bind *:8080
+    bind *:80
     default_backend mybackend
 
 backend mybackend
     balance roundrobin
-    server 414087-web-01 100.24.244.24:80 check
+    server 414087-web-01 52.91.202.165:80 check
     server 414087-web-02 52.87.222.58:80 check
 " | tee /etc/haproxy/haproxy.cfg
 
