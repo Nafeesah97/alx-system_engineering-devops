@@ -1,9 +1,31 @@
 #!/usr/bin/env bash
-# debugging to make nginx listen on port 80
-if ! command -v nginx &> /dev/null; then
-	apt-get update
-	apt-get install -y nginx
-fi
-sudo sed -i '/^listen 80 default_server;/c\listen 80;' /etc/nginx/sites-available/default
-sudo sed -i '/^listen [::]:80 default_server;/c\listen [::]:80;' /etc/nginx/sites-available/default
-sudo service nginx restart
+# debuging a server to listen on port 80
+
+# Update the package list
+apt-get update
+
+# Install net-tools for debugging
+apt-get install -y net-tools
+
+# Check active IPv4 addresses
+ip addr show | grep "inet " | awk '{print $2}'
+
+# Check Nginx status
+systemctl status nginx
+
+# Check Nginx configuration for the default server block
+nginx_config="/etc/nginx/sites-available/default"
+cat "$nginx_config"
+
+# Replace listen directives in the default server block
+sed -i 's/listen [0-9]\+/listen 80/g' "$nginx_config"
+
+# Restart Nginx
+systemctl restart nginx
+
+# Check Nginx status again
+systemctl status nginx
+
+# Verify that Nginx is listening on port 80
+netstat -tulpn | grep LISTEN | grep 80
+
