@@ -1,31 +1,11 @@
 #!/usr/bin/env bash
 # debuging a server to listen on port 80
 
-# Update the package list
-apt-get update
-
-# Install net-tools for debugging
-apt-get install -y net-tools
-
-# Check active IPv4 addresses
-ip addr show | grep "inet " | awk '{print $2}'
-
-# Check Nginx status
-systemctl status nginx
-
-# Check Nginx configuration for the default server block
-nginx_config="/etc/nginx/sites-available/default"
-cat "$nginx_config"
-
-# Replace listen directives in the default server block
-sed -i 's/listen [0-9]\+/listen 80/g' "$nginx_config"
-
-# Restart Nginx
-systemctl restart nginx
-
-# Check Nginx status again
-systemctl status nginx
-
-# Verify that Nginx is listening on port 80
-netstat -tulpn | grep LISTEN | grep 80
-
+# Go to sites-enabled folder for Nginx                                                                                                                    
+cd /etc/nginx/sites-enabled/ || exit;                                                                                                                             
+# Delete the default file                                                                                                                               
+rm default;                                                                                                                                               
+# Create symbolic link to the deafult file in sites-available                                                                                             
+ln -s /etc/nginx/sites-available/default default;                                                                                                         
+# Restart Nginx                                                                                                                                           
+service nginx restart 
