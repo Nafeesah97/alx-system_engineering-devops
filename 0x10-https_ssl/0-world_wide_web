@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+# shows the information of a domain
+play_info() {
+	domain="$1"
+	sub="$2"
+
+	subdomains=("www" "lb-01" "web-01" "web-02")
+
+	if [ -n "$sub" ];then
+		subdomains=("$sub")
+	fi
+
+	for sub in "${subdomains[@]}"; do
+		echo -n "The subdomain $sub is a "
+		dig "$sub.$domain" +short | awk '{print "A record and points to",$NF}'
+	done
+}
+
+if [ "$#" -eq 2 ]; then
+	play_info "$1" "$2"
+else
+	play_info "$1"
+fi
+
