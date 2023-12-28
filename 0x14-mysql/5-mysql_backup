@@ -8,7 +8,8 @@ pass="$1"
 backup_date=$(date +'%d-%m-%Y')
 mysql_dump_file="backup.sql"
 mysql_dump_file="backup.sql"
-mysqldump -u root -p"${mysql_password}" --all-databases > "${mysql_dump_file}"
+archive_name="${backup_date}.tar.gz"
+mysqldump -u root -p"${pass}" --all-databases > "${mysql_dump_file}"
 if [ $? -eq 0 ]; then
 	tar -czf "${archive_name}" "${mysql_dump_file}"
 fi
