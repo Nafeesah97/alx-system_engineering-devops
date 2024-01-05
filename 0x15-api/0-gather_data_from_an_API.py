@@ -25,5 +25,5 @@ if __name__ == "__main__":
             completed.append(tas)
     
     print("Employee {} is done with tasks({}/{}):".format(
-          user, len(completed), len(tasks)))
+          user['name'], len(completed), len(tasks)))
     [print("\t {}".format(c['title'])) for c in completed]
