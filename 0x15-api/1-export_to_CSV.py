@@ -22,5 +22,5 @@ if __name__ == "__main__":
 
     with open(csv_file, 'w') as f:
         for task in tasks:
-            f.write(f""""{task['userId']}", "{user['username']}",\
-"{task['completed']}", "{task['title']}"\n""")
+            f.write(f""""{task['userId']}","{user['username']}",\
+"{task['completed']}","{task['title']}"\n""")
