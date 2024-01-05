@@ -16,7 +16,7 @@ Author: Nafeesah
 if __name__ == "__main__":
     employee_id = sys.argv[1]
     url = "https://jsonplaceholder.typicode.com/"
-    user = requests.get(f"https://jsonplaceholder.typicode.com/users?id={employee_id}").json()
+    user = requests.get(f"https://jsonplaceholder.typicode.com/users?id={employee_id}").json()[0]
     tasks = requests.get(url + "todos", params={"userId": employee_id}).json()
 
     completed = []
