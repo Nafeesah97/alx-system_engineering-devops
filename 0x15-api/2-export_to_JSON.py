@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """Importing necessary libraries"""
-import requests
 import json
+import requests
 import sys
 
 """
