@@ -33,4 +33,4 @@ if __name__ == "__main__":
     json_obj[f"{employee_id}"] = task_list
 
     with open(json_file, 'w') as f:
-        json.dump(json_obj, json_file)
+        json.dump(json_obj, f)
