@@ -23,14 +23,15 @@ if __name__ == "__main__":
     tasks = requests.get(url + "todos", params={"userId": employee_id}).json()
 
     task_list = []
-    task_dic = {}
     json_obj = {}
     for task in tasks:
-        task_dic["task"] = task['title']
-        task_dic["completed"] = task['completed']
-        task_dic["username"] = user['username']
+        task_dic = {
+                "task": task["title"],
+                "completed": task["completed"],
+                "username": user["username"],
+            }
         task_list.append(task_dic)
-        json_obj[f"{employee_id}"] = task_list
+    json_obj = {employee_id: task_list}
 
     with open(json_file, 'w') as f:
         json.dump(json_obj, f)
