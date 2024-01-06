@@ -24,13 +24,13 @@ if __name__ == "__main__":
 
     task_list = []
     task_dic = {}
+    json_obj = {}
     for task in tasks:
         task_dic["task"] = task['title']
         task_dic["completed"] = task['completed']
         task_dic["username"] = user['username']
         task_list.append(task_dic)
-    json_obj = {}
-    json_obj[f"{employee_id}"] = task_list
+        json_obj[f"{employee_id}"] = task_list
 
     with open(json_file, 'w') as f:
         json.dump(json_obj, f)
