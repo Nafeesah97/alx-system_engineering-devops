@@ -22,7 +22,7 @@ if __name__ == "__main__":
     tasks = requests.get(url + "todos").json()
 
     all_task_data = {}
-    
+
     for users in user:
         task_list = []
         for task in tasks:
