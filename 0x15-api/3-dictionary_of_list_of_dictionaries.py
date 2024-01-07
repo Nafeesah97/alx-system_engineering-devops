@@ -18,23 +18,21 @@ if __name__ == "__main__":
     json_file = "todo_all_employees.json"
     url = "https://jsonplaceholder.typicode.com/"
     userurl = f"https://jsonplaceholder.typicode.com/users?"
-    user = requests.get(userurl).json()[0]
+    user = requests.get(userurl).json()
     tasks = requests.get(url + "todos").json()
-    print(user)
-    print("--------")
-    print(tasks)
 
-    """task_list = []
-    json_obj = {}
-    for i in 
-    for task in tasks:
-        task_dic = {
-                "task": task["title"],
-                "completed": task["completed"],
-                "username": user["username"],
-            }
-        task_list.append(task_dic)
-    json_obj = {employee_id: task_list}
+    for users in user:
+        for task in tasks:
+            task_list = []
+            if users["id"] == task['userId']:
+                json_obj = {}
+                task_dic = {
+                    "task": task["title"],
+                    "completed": task["completed"],
+                    "username": users["username"],
+                    }
+            task_list.append(task_dic)
+        json_obj = {users["id"]: task_list}
 
     with open(json_file, 'w') as f:
-        json.dump(json_obj, f)"""
+        json.dump(json_obj, f)
