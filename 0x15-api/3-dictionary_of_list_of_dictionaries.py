@@ -22,17 +22,18 @@ if __name__ == "__main__":
     tasks = requests.get(url + "todos").json()
 
     for users in user:
+        task_list = []
+        all_task_data = {}
         for task in tasks:
-            task_list = []
-            if users["id"] == task['userId']:
+           if users["id"] == task['userId']:
                 json_obj = {}
                 task_dic = {
                     "task": task["title"],
                     "completed": task["completed"],
                     "username": users["username"],
                     }
-            task_list.append(task_dic)
-        json_obj = {users["id"]: task_list}
+                task_list.append(task_dic)
+        all_task_data[user["id"]] = task_list
 
     with open(json_file, 'w') as f:
-        json.dump(json_obj, f)
+        json.dump(all_task_data, f)all_task_data[user["id"]] = task_list
