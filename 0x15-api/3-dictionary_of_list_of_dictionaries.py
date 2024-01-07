@@ -21,19 +21,19 @@ if __name__ == "__main__":
     user = requests.get(userurl).json()
     tasks = requests.get(url + "todos").json()
 
+    all_task_data = {}
+    
     for users in user:
         task_list = []
-        all_task_data = {}
         for task in tasks:
-           if users["id"] == task['userId']:
-                json_obj = {}
+            if users["id"] == task['userId']:
                 task_dic = {
                     "task": task["title"],
                     "completed": task["completed"],
                     "username": users["username"],
-                    }
+                }
                 task_list.append(task_dic)
-        all_task_data[user["id"]] = task_list
+        all_task_data[users["id"]] = task_list  # Fix the key here
 
     with open(json_file, 'w') as f:
-        json.dump(all_task_data, f)all_task_data[user["id"]] = task_list
+        json.dump(all_task_data, f)
