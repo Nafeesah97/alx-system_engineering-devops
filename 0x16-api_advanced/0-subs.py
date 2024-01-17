@@ -12,11 +12,11 @@ def number_of_subscribers(subreddit):
     if subreddit is None or type(subreddit) is not str:
         return 0
     url = 'https://www.reddit.com/r/{}/about.json'.format(subreddit)
-    headers = {"User-Agent": "My-User-Agent"}
+    headers = {"User-Agent": "0x16-api_advanced"}
 
     r = requests.get(url, headers=headers, allow_redirects=False)
 
-    if r.status_code >= 300:
+    if r.get("data") is None:
         return 0
     subs = r.json().get("data").get("subscribers")
     return subs
