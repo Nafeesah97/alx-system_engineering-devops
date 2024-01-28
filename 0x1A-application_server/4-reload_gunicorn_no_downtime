@@ -2,4 +2,4 @@
 # To reload Gunicorn in a graceful way
 
 pgrep gunicorn | xargs kill -HUP
-
+sudo service gunicorn restart
